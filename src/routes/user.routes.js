@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  getUserChannelProfile,
   loginUser,
   logoutUser,
   refreshAccessToken,
@@ -28,6 +29,8 @@ router.route("/login").post(loginUser);
 
 router.route("/logout").post(verifyJWT, logoutUser);
 
-router.route("refresh-token").post(refreshAccessToken);
+router.route("/refresh-token").post(refreshAccessToken);
+
+router.route("/profile").get(getUserChannelProfile);
 
 export default router;

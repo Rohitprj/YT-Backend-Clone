@@ -298,6 +298,8 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
 const getUserChannelProfile = asyncHandler(async (req, res) => {
   const { username } = req.params;
 
+  console.log("username", username);
+
   if (!username.trim()) {
     throw new ApiError(401, "Username is missing");
   }
@@ -359,7 +361,9 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
   }
   console.log("Channel ", channel);
 
-  res.status(200).json(new ApiResponse(200, channel[0], "User channel data!"));
+  return res
+    .status(200)
+    .json(new ApiResponse(200, channel[0], "User channel data!"));
 });
 
 export {

@@ -25,7 +25,7 @@ app.use("/api/v1/users", userRoutes);
 app.use("/", (req, res) => {
   res.send({
     success: true,
-    message: "Server is running",
+    message: "Server is running..",
   });
 });
 
