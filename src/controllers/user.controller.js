@@ -146,7 +146,8 @@ const logoutUser = asyncHandler(async (req, res) => {
   await User.findByIdAndUpdate(
     req.user._id,
     {
-      $set: { refreshToken: undefined },
+      // $set: { refreshToken: undefined },
+      $unset: { refreshToken: 1 },
     },
     { new: true }
   );
@@ -235,7 +236,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
     throw new ApiError(400, "All fields are required");
   }
 
-  const user = User.findByIdAndUpdate(
+  const user = await User.findByIdAndUpdate(
     req.user?._id,
     {
       $set: {
@@ -367,6 +368,7 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
 });
 
 const getUserWatchHistory = asyncHandler(async (req, res) => {});
+
 export {
   registerUser,
   loginUser,
